@@ -1,0 +1,10 @@
+services:
+  bench:
+    build: .
+    volumes:
+      - ./experiments:/repo/experiments
+      - ./data:/repo/data
+    command: ["python", "-m", "benchmarks.run_all", "--sizes", "1000,10000,100000", "--out", "experiments/results.json"]
+  test:
+    build: .
+    command: ["pytest", "-q", "tests/"]
